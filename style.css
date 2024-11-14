@@ -1,4 +1,4 @@
-/* General Styling */
+/* General Dark Theme Styling */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -6,32 +6,37 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: #121212;
+    color: #ffffff;
 }
 
 .container {
-    position: relative;
     text-align: center;
 }
 
+/* Main Image Styling */
 .main-image {
-    max-width: 100%;
+    max-width: 90%;
     border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
 }
 
-/* Floating Button Styling */
+/* Thank You Beyoncé Button Styling */
 .floating-button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-size: 16px;
-    background-color: #ff5c5c;
+    background: linear-gradient(45deg, #ff4040, #406aff);
     color: white;
     border: none;
-    border-radius: 50px;
+    border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
+}
+
+.floating-button:hover {
+    transform: scale(1.05);
 }
 
 /* Popup Styling */
@@ -41,20 +46,20 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: #222;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     text-align: center;
     border-radius: 10px;
 }
 
 .popup img {
-    max-width: 100%;
+    max-width: 80%;
     border-radius: 10px;
 }
 
 .popup p {
     margin-top: 10px;
     font-size: 18px;
-    color: red;
+    color: #ff4040;
 }
