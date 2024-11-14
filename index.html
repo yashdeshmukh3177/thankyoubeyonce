@@ -3,35 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beyoncé Tribute</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Thank You, Beyoncé</title>
+    <style>
+        /* Background and Body Styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle at center, #1a1a1a, #000000);
+            color: #FFFFFF;
+            overflow: hidden;
+        }
+
+        /* Container for Main Content */
+        .container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Beyoncé's Image */
+        #beyonce-photo {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px 5px rgba(255, 0, 0, 0.7), 0px 0px 20px 5px rgba(0, 0, 255, 0.7);
+            transition: transform 0.3s ease-in-out;
+        }
+        #beyonce-photo:hover {
+            transform: scale(1.08);
+        }
+
+        /* Button Styling */
+        .thank-button {
+            margin-top: 20px;
+            padding: 16px 24px;
+            font-size: 1.4em;
+            font-weight: bold;
+            background: linear-gradient(135deg, red, blue);
+            border: none;
+            border-radius: 12px;
+            color: #FFFFFF;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+            box-shadow: 0px 4px 15px rgba(255, 0, 0, 0.4), 0px 4px 15px rgba(0, 0, 255, 0.4);
+        }
+        .thank-button:hover {
+            transform: scale(1.1) rotate(-2deg);
+            background: linear-gradient(135deg, #ff3333, #3333ff);
+            box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Popup Box for Grammy Award */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: #333;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 25px rgba(255, 255, 255, 0.3);
+            animation: popIn 0.6s ease forwards;
+        }
+        .popup img {
+            width: 120px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Diddy Image on Outside Click */
+        .diddy-photo {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 80%;
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7), 0 0 25px rgba(0, 0, 255, 0.7);
+            animation: popIn 0.6s ease forwards;
+        }
+
+        /* Animations for Popups and Buttons */
+        @keyframes popIn {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+    </style>
 </head>
 <body>
+    <div class="container" id="main-container">
+        <!-- Beyoncé's Photo -->
+        <img id="beyonce-photo" src="https://people.com/thmb/goGB8ogyqUvF5ErOq0XWdeS07Ho=/400x262/filters:no_upscale():max_bytes(150000):strip_icc()/Beyonce-tout-11824-41a851f2d85042208a41a6ab5904aaed.jpg" alt="Beyoncé">
 
-    <!-- Beyoncé Image Container -->
-    <div class="container">
-        <img src="https://people.com/thmb/goGB8ogyqUvF5ErOq0XWdeS07Ho=/400x262/filters:no_upscale():max_bytes(150000):strip_icc()/Beyonce-tout-11824-41a851f2d85042208a41a6ab5904aaed.jpg" 
-             alt="Beyoncé" 
-             class="main-image">
-        
-        <!-- Thank You Beyoncé Button -->
-        <button id="popupButton" class="floating-button">Thank You, Beyoncé</button>
+        <!-- Thank You Button -->
+        <button class="thank-button" id="thankButton">Thank You, Beyoncé</button>
     </div>
 
-    <!-- Grammy Popup -->
-    <div id="grammyPopup" class="popup">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5wlpasUjbi8aG6HeRv0cpVW_JsiZJO1dMKA&s" 
-             alt="Grammy Award" 
-             class="popup-image">
+    <!-- Grammy Award Popup -->
+    <div class="popup" id="popup">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5wlpasUjbi8aG6HeRv0cpVW_JsiZJO1dMKA&s" alt="Grammy Award">
     </div>
 
-    <!-- P Diddy Popup -->
-    <div id="ripPopup" class="popup">
-        <img src="https://pyxis.nymag.com/v1/imgs/2e3/cc4/36e1610a7f36b85edde16652e6325eb2df-diddy-current-lawsuits.1x.rsquare.w1400.jpg" 
-             alt="P Diddy" 
-             class="popup-image">
-    </div>
+    <!-- P Diddy Photo -->
+    <img class="diddy-photo" id="diddyPhoto" src="https://pyxis.nymag.com/v1/imgs/2e3/cc4/36e1610a7f36b85edde16652e6325eb2df-diddy-current-lawsuits.1x.rsquare.w1400.jpg" alt="P Diddy">
 
-    <script src="script.js"></script>
+    <!-- JavaScript for Interactivity -->
+    <script>
+        const thankButton = document.getElementById('thankButton');
+        const popup = document.getElementById('popup');
+        const diddyPhoto = document.getElementById('diddyPhoto');
+        const mainContainer = document.getElementById('main-container');
+
+        // Toggle Grammy popup with animation on button click
+        thankButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+            diddyPhoto.style.display = 'none';  // Hide Diddy photo if visible
+        });
+
+        // Show Diddy photo on clicking outside button
+        document.body.addEventListener('click', (event) => {
+            if (!event.target.closest('#thankButton')) {
+                diddyPhoto.style.display = 'block';
+                popup.style.display = 'none'; // Hide Grammy popup if visible
+            }
+        });
+
+        // Close Grammy popup on clicking outside
+        document.addEventListener('click', (event) => {
+            if (popup.style.display === 'block' && !event.target.closest('.popup')) {
+                popup.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
