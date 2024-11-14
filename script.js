@@ -1,32 +1,28 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const button = document.getElementById("popupButton");
-    const grammyPopup = document.getElementById("grammyPopup");
-    const ripPopup = document.getElementById("ripPopup");
+// Get elements
+const popupButton = document.getElementById("popupButton");
+const grammyPopup = document.getElementById("grammyPopup");
+const ripPopup = document.getElementById("ripPopup");
 
-    // Show Grammy popup when button is clicked
-    button.addEventListener("click", (event) => {
-        event.stopPropagation();
-        grammyPopup.style.display = "block";
-        ripPopup.style.display = "none";
-    });
+// Show Grammy Popup on Button Click
+popupButton.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevent click from propagating to document
+    grammyPopup.style.display = "block";
+    ripPopup.style.display = "none"; // Hide P Diddy if visible
+});
 
-    // Show RIP popup when clicking anywhere else
-    document.addEventListener("click", (event) => {
-        if (event.target !== button) {
-            ripPopup.style.display = "block";
-            grammyPopup.style.display = "none";
-        }
-    });
+// Show P Diddy Image on Outside Click
+document.addEventListener("click", (e) => {
+    if (e.target !== popupButton) {
+        ripPopup.style.display = "block";
+        grammyPopup.style.display = "none"; // Hide Grammy popup if visible
+    }
+});
 
-    // Hide popups when clicking outside of them
-    [grammyPopup, ripPopup].forEach((popup) => {
-        popup.addEventListener("click", (event) => {
-            event.stopPropagation();
-        });
-    });
+// Close popups when clicking outside them
+grammyPopup.addEventListener("click", (e) => {
+    grammyPopup.style.display = "none";
+});
 
-    document.addEventListener("click", () => {
-        grammyPopup.style.display = "none";
-        ripPopup.style.display = "none";
-    });
+ripPopup.addEventListener("click", (e) => {
+    ripPopup.style.display = "none";
 });
