@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You, Beyoncé</title>
+    <link rel="icon" href="https://logos.textgiraffe.com/logos/logo-name/Beyonce-designstyle-popstar-m.png" type="image/png">
     <style>
         /* Background and Body Styling */
         body {
@@ -79,6 +80,27 @@
             box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
         }
 
+        /* Close Button for Popup */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            background: rgba(255, 0, 0, 0.8);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .close-button:hover {
+            background: rgba(255, 0, 0, 1);
+        }
+
         /* Diddy Image on Outside Click */
         .diddy-photo {
             display: none;
@@ -122,6 +144,7 @@
 
     <!-- Grammy Award Popup -->
     <div class="popup" id="popup">
+        <span class="close-button" id="closeButton">&times;</span>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5wlpasUjbi8aG6HeRv0cpVW_JsiZJO1dMKA&s" alt="Grammy Award">
     </div>
 
@@ -133,7 +156,7 @@
         const thankButton = document.getElementById('thankButton');
         const popup = document.getElementById('popup');
         const diddyPhoto = document.getElementById('diddyPhoto');
-        const mainContainer = document.getElementById('main-container');
+        const closeButton = document.getElementById('closeButton');
 
         // Toggle Grammy popup with animation on button click
         thankButton.addEventListener('click', (event) => {
@@ -142,18 +165,17 @@
             diddyPhoto.style.display = 'none';  // Hide Diddy photo if visible
         });
 
-        // Show Diddy photo on clicking outside button
-        document.body.addEventListener('click', (event) => {
-            if (!event.target.closest('#thankButton')) {
-                diddyPhoto.style.display = 'block';
-                popup.style.display = 'none'; // Hide Grammy popup if visible
-            }
+        // Close the popup when clicking the close button
+        closeButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            popup.style.display = 'none';
         });
 
-        // Close Grammy popup on clicking outside
-        document.addEventListener('click', (event) => {
-            if (popup.style.display === 'block' && !event.target.closest('.popup')) {
-                popup.style.display = 'none';
+        // Show Diddy photo on clicking outside button and popup
+        document.body.addEventListener('click', (event) => {
+            if (!event.target.closest('#thankButton') && !event.target.closest('.popup')) {
+                diddyPhoto.style.display = 'block';
+                popup.style.display = 'none'; // Hide Grammy popup if visible
             }
         });
     </script>
